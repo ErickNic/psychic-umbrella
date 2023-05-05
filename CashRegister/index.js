@@ -38,7 +38,7 @@ function checkCashRegister(price, cash, cid) {
                     return
                 }
                 if(array[0] === currencyAvalabilityArray[8][0]){
-                    copy.push(...array);
+                    copy = array;
                     skipSign = true;
                     return;
                 }
@@ -69,7 +69,7 @@ function checkCashRegister(price, cash, cid) {
                     return
                 }
                 if(array[0] === currencyAvalabilityArray[7][0]){
-                    copy.push(...array);
+                    copy = array;
                     skipSign = true;
                     return;
                 }
@@ -104,7 +104,7 @@ function checkCashRegister(price, cash, cid) {
                     return
                 }
                 if(array[0] === currencyAvalabilityArray[6][0]){
-                    copy.push(...array);
+                    copy = array;
                     skipSign = true;
                     return;
                 }
@@ -138,7 +138,7 @@ function checkCashRegister(price, cash, cid) {
                     return
                 }
                 if(array[0] === currencyAvalabilityArray[5][0]){
-                    copy.push(...array);
+                    copy = array;
                     skipSign = true;
                     return;
                 }
@@ -172,10 +172,8 @@ function checkCashRegister(price, cash, cid) {
                     return
                 }
                 if(array[0] === currencyAvalabilityArray[4][0]){
-                    copy.push(...array);
+                    copy = array;
                     skipSign = true;
-                    console.log(array);
-                    console.log(copy);
                     return;
                 }
             });
@@ -209,10 +207,8 @@ function checkCashRegister(price, cash, cid) {
                     return
                 }
                 if(array[0] === currencyAvalabilityArray[3][0]){
-                    copy.push(...array);
+                    copy = array;
                     skipSign = true;
-                    console.log(array);
-                    console.log(copy);
                     return;
                 }
             });
@@ -230,8 +226,10 @@ function checkCashRegister(price, cash, cid) {
 
             diff = diff - currencyAvalabilityArray[3][2];
             diff =  Math.round((diff + Number.EPSILON) * 100) / 100;
-
+            console.log(currencyAvalabilityArray[3][2])
+            console.log(copy[1])
             copy[1] =copy[1] +currencyAvalabilityArray[3][2]
+            console.log(copy[1])
             copy[1] =Math.round((copy[1] + Number.EPSILON) * 100) / 100;
         }else if(diff>=0.1 && currencyAvalabilityArray[2][1]){
             if(!currencyAvalabilityArray[2][3]){
@@ -245,10 +243,8 @@ function checkCashRegister(price, cash, cid) {
                     return
                 }
                 if(array[0] === currencyAvalabilityArray[2][0]){
-                    copy.push(...array);
+                    copy = array;
                     skipSign = true;
-                    console.log(array);
-                    console.log(copy);
                     return;
                 }
             });
@@ -281,10 +277,8 @@ function checkCashRegister(price, cash, cid) {
                     return
                 }
                 if(array[0] === currencyAvalabilityArray[1][0]){
-                    copy.push(...array);
+                    copy = array;
                     skipSign = true;
-                    console.log(array);
-                    console.log(copy);
                     return;
                 }
             });
@@ -310,17 +304,15 @@ function checkCashRegister(price, cash, cid) {
                 submit.change.unshift([currencyAvalabilityArray[0][0],0]);
                 currencyAvalabilityArray[0][3]= true;
             }
-            const copy = []
+            let copy = []
             let skipSign = false;
             submit.change.forEach(array =>{
                 if(skipSign){
                     return
                 }
                 if(array[0] === currencyAvalabilityArray[0][0]){
-                    copy.push(...array);
+                    copy = array;
                     skipSign = true;
-                    console.log(array);
-                    console.log(copy);
                     return;
                 }
             });
@@ -350,4 +342,8 @@ function checkCashRegister(price, cash, cid) {
     return submit;
 }
     
-checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]])
+checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]);
+checkCashRegister(3.26, 100, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]);
+/* {status: "OPEN", change: 
+        [["TWENTY", 60], ["TEN", 20], ["FIVE", 15], ["ONE", 1], ["QUARTER", 0.5], ["DIME", 0.2], ["PENNY", 0.04]]
+} */
